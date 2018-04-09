@@ -31,7 +31,7 @@ tar \
 "
 
 RUN \
-  apk add --no-cache ${PACKAGES} && \
+  apk add --update --no-cache ${PACKAGES} && \
 # install fpm
   gem update --no-ri --no-rdoc --system && \
   gem install --no-ri --no-rdoc fpm && \
@@ -112,10 +112,10 @@ COPY --from=builder /vim*.apk /tmp/vim.apk
 
 RUN \
 # install build deps
-  apk add --no-cache --virtual build-deps \
+  apk add --update --no-cache --virtual build-deps \
     build-base make gcc python3-dev musl-dev ruby-dev curl && \
 # install vim package
-  apk add --no-cache --allow-untrusted /tmp/vim.apk && \
+  apk add --update --no-cache --allow-untrusted /tmp/vim.apk && \
 # update pip, gem and npm
   pip3 install --upgrade pip && \
   gem update --no-ri --no-rdoc --system && \

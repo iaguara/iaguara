@@ -40,7 +40,7 @@ dotfiles:
 			-v /root \
 			iaguara/dotfiles
 
-run: clean data dotfiles network
+run: data dotfiles network
 	docker run -it --rm --privileged \
 		--name $(project).iaguara \
 		--network iaguara \
