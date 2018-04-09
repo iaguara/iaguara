@@ -1,0 +1,8 @@
+*
+.*
+
+!./rootfs
+!./rootfs/**/*
+!./rootfs/**/.*
+
+!Dockerfile

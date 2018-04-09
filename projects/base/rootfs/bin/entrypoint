@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+
+if [ "$1" = 'start' ]
+then
+  shift
+
+  # when no arguments given exit with errcode 1
+  if [ -z "$@" ]
+  then
+     >&2 echo "ERROR: You need to provide GitHub logins!"
+     exit 1
+  fi
+
+  for user in $@
+  do
+    echo "Fetching keys for $user..."
+
+    # get and parse user keys
+    KEYS=$(IFS=$'\n' curl https://api.github.com/users/$user/keys | jq '.[].key')
+
+    # append the keys to authorized_keys
+    touch "$HOME/.ssh/authorized_keys"
+    IFS=$'\n' 
+    for key in $KEYS
+    do
+      sh -c "echo 'command=\"/usr/bin/tmux -2 new -s $user -t pair\" ' $key >> $HOME/.ssh/authorized_keys"
+    done
+  done
+
+  # start ssh daemon
+  /usr/sbin/sshd -Def /etc/ssh/sshd_config
+
+  exit 0
+fi
+
+exec "$@"

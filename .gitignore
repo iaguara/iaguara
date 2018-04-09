@@ -1,0 +1,11 @@
+*
+.*
+
+!.gitignore
+!iaguara.sh
+!README.md
+!UNLICENSE
+
+!projects
+!projects/**/*
+!projects/**/.*
