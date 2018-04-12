@@ -1,4 +1,4 @@
-project = vim
+project = node8
 date = $(shell date +%s)
 
 stop:
@@ -16,6 +16,7 @@ run:
 		--name "$(project)-$(date).iaguara" \
 		-h "$(project)-$(date).iaguara" \
 		-v /tmp:/tmp \
+		-v ${HOME}/.ssh:/root/.ssh \
 		-w ${PWD} \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \

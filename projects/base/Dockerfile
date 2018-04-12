@@ -20,6 +20,7 @@ RUN \
 # denver dependencies
   apk add --update --no-cache \
     curl \
+    bash \
     git \
     jq \
     make \

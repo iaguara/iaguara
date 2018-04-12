@@ -1,4 +1,4 @@
-project = vim
+project = gradle8
 date = $(shell date +%s)
 
 stop:
@@ -10,14 +10,19 @@ remove: stop
 build: remove
 	docker build -t iaguara/$(project) .
 
-run:
+cache:
+	- docker volume create --name gradle8-cache.iaguara
+
+run: cache
 	docker run -it --rm \
 		--network iaguara \
 		--name "$(project)-$(date).iaguara" \
 		-h "$(project)-$(date).iaguara" \
 		-v /tmp:/tmp \
+		-v ${HOME}/.ssh:/root/.ssh \
+		-v gradle8-cache.iaguara:/home/gradle/.gradle \
+		-v ${HOST_HOME}/.m2:/home/gradle/.m2 \
 		-w ${PWD} \
 		--volumes-from data.iaguara \
-		--volumes-from dotfiles.iaguara \
 		iaguara/$(project) \
 		$(RUN_COMMAND)

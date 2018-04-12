@@ -49,6 +49,7 @@ run: data dotfiles network
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v /tmp:/tmp \
 		-v ${HOME}/.ssh:/root/.ssh \
+		-v ${IAGUARA_HOME}:/iaguara \
 		-e HOST_HOME="${HOME}" \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \
