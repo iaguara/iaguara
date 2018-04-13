@@ -1,11 +1,9 @@
 project = dotfiles
+imageName = iaguara/$(project)
 
-stop:
-	- docker container stop iaguara/$(project)
-
-remove: stop
-	- docker image rm -f iaguara/$(project)
+remove:
+	- docker image rm -f $(imageName)
 
 build: remove
-	docker build -t iaguara/$(project) .
+	docker build -t $(imageName) .
 

@@ -1,13 +1,15 @@
 project = base
+containerName = $(project).iaguara
+imageName = iaguara/$(project)
 
 stop:
-	- docker container stop iaguara/$(project)
+	- docker container stop $(containerName)
 
 remove: stop
-	- docker image rm -f iaguara/$(project)
+	- docker image rm -f $(imageName)
 
 build: remove
-	docker build -t iaguara/$(project) .
+	docker build -t $(imageName) .
 
 ls:
 	@echo
@@ -18,7 +20,7 @@ ls:
 	@echo
 
 clean:
-	- docker rm -f $(project).iaguara
+	- docker rm -f $(containerName)
 	- docker rm -f data.iaguara
 	- docker rm -f dotfiles.iaguara
 
@@ -42,9 +44,9 @@ dotfiles:
 
 run: data dotfiles network
 	docker run -it --rm --privileged \
-		--name $(project).iaguara \
+		--name $(containerName) \
 		--network iaguara \
-		-h "iaguara" \
+		-h iaguara \
 		-p 2200:22 \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v /tmp:/tmp \
@@ -53,7 +55,7 @@ run: data dotfiles network
 		-e HOST_HOME="${HOME}" \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \
-		iaguara/$(project) \
+		$(imageName) \
 		$(RUN_COMMAND) $(GITHUB_USERS)
 
 start:

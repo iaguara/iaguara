@@ -6,11 +6,16 @@ export IAGUARA_HOME=${IAGUARA_HOME:-$rootPath}
 export IAGUARA_RC="${IAGUARA_HOME}/iaguara.sh"
 
 iaguara() {
-  local command="${1}"
-  local baseDir="${IAGUARA_HOME}/projects/base"
+  local project="${1}"
+  local projectDir="${IAGUARA_HOME}/projects/${project}"
 
-  # remove first argument
-  [ $# -ne 0 ] && shift
+  if [ -d "$projectDir" ]
+  then
+    # remove first argument
+    [ $# -ne 0 ] && shift
+  else
+    project=base
+  fi
 
-  env sh -c "cd ${baseDir}; make ${command}"
+  env make -C ${projectDir} ${project} "${@}"
 }
