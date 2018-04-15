@@ -22,5 +22,6 @@ run:
 		-w ${PWD} \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \
+		-e COLUMNS=${COLUMNS} -e LINES=${LINES} \
 		$(imageName) \
 		$(RUN_COMMAND)

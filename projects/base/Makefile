@@ -54,6 +54,7 @@ run: data dotfiles network
 		-v ${IAGUARA_HOME}:/iaguara \
 		-e HOST_HOME="${HOME}" \
 		-e HOST_IAGUARA_HOME="${IAGUARA_HOME}" \
+		-e COLUMNS=`tput cols` -e LINES=`tput lines` \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \
 		$(imageName) \

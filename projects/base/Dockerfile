@@ -5,20 +5,20 @@ ENTRYPOINT ["/bin/entrypoint"]
 EXPOSE 22
 
 ARG TZ="UTC"
-ARG LOCALE="en_US.UTF-8"
+ARG LANG="en_US.UTF-8"
 
 ENV SHELL="/bin/zsh" \
     TZ=${TZ} \
-    LANG=${LOCALE} \
-    LANGUAGE=${LOCALE} \
-    LC_ALL=${LOCALE}
+    LANG=${LANG} \
+    LC_ALL=${LANG}
 
 RUN \
+  apk add --no-cache --upgrade xterm screen && \
 # build dependencies
-  apk add --update --no-cache --virtual build-deps \
+  apk add --no-cache --virtual build-deps \
     tzdata && \
-# denver dependencies
-  apk add --update --no-cache \
+# iaguara dependencies
+  apk add --no-cache \
     curl \
     bash \
     git \
