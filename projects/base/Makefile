@@ -33,7 +33,7 @@ network:
 data:
 	- docker create \
 			--name data.iaguara \
-			-v ${HOME}/workdir:/data \
+			-v ${HOME}/workspace:/data \
 			tianon/true
 
 dotfiles:
@@ -53,6 +53,7 @@ run: data dotfiles network
 		-v ${HOME}/.ssh:/root/.ssh \
 		-v ${IAGUARA_HOME}:/iaguara \
 		-e HOST_HOME="${HOME}" \
+		-e HOST_IAGUARA_HOME="${IAGUARA_HOME}" \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \
 		$(imageName) \
