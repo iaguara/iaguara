@@ -11,7 +11,7 @@ RUN \
   printf "\
 [include]\n\
   path = ~/.oka/git/.gitconfig\n\
-" | tee /oka/.gitconfig
+" | tee /oka/.gitconfig && \
 # install oh-my-zsh
   git clone \
     --quiet \
