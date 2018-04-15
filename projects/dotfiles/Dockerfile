@@ -8,6 +8,10 @@ RUN \
     -b master \
     https://github.com/iaguara/oka.git \
     "/oka" && \
+  printf "\
+[include]\n\
+  path = ~/.oka/git/.gitconfig\n\
+" | tee /oka/.gitconfig
 # install oh-my-zsh
   git clone \
     --quiet \
