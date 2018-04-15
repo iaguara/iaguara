@@ -18,6 +18,7 @@ run:
 		--name $(containerName) \
 		-h $(containerName) \
 		-v /tmp:/tmp \
+		-v ${IAGUARA_HOME}:/iaguara \
 		-w ${PWD} \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \

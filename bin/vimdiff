@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+cmdDir=/iaguara/projects/vim
+
+RUN_COMMAND="vimdiff ${1} ${PWD}/${2}" make -C ${cmdDir} run

@@ -6,6 +6,10 @@
 !README.md
 !UNLICENSE
 
+!bin
+!bin/**/*
+!bin/**/.*
+
 !projects
 !projects/**/*
 !projects/**/.*

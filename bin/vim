@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+cmdDir=/iaguara/projects/vim
+
+RUN_COMMAND="vim ${@}" make -C ${cmdDir} run
