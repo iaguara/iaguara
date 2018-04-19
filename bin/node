@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+cmdDir=/iaguara/projects/node
+
+nodeVersion="${1}"
+
+# remove first argument
+[ $# -ne 0 ] && shift
+
+NODE_VERSION="${nodeVersion}" RUN_COMMAND="${@}" make -C ${cmdDir} run

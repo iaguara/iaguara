@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-cmdDir=/iaguara/projects/node8
-
-RUN_COMMAND="${@}" make -C ${cmdDir} run
