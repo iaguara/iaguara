@@ -22,6 +22,7 @@ RUN \
     curl \
     bash \
     git \
+    htop \
     jq \
     make \
     openssh \

@@ -1,3 +1,4 @@
+NODE_VERSION ?= 8
 project = node
 date = $(shell date +%s)
 containerName = $(project)-$(date).iaguara
