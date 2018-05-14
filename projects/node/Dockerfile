@@ -14,7 +14,8 @@ RUN \
     libtool \
     make \
     nasm \
-    openssh-client && \
+    openssh-client \
+    python && \
   npm install -g npx@latest
 
 WORKDIR /data
