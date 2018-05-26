@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+cmdDir=/iaguara/projects/composer
+
+RUN_COMMAND="composer ${@}" make -C ${cmdDir} run

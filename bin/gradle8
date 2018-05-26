@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-cmdDir=/iaguara/projects/gradle8
-
-RUN_COMMAND="${@}" make -C ${cmdDir} run
