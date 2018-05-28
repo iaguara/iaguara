@@ -3,7 +3,7 @@ FROM alpine:latest AS builder
 ENV COMPILED_BY="fiuzagr" \
     BUILD_DIR=/tmp/vim \
     INSTALL_DIR=/vim \
-    VIM_FILES=/vim/usr/local/share/vim/vim80 \
+    VIM_FILES=/vim/usr/local/share/vim/vim81 \
     RUBY_COMMAND=/usr/bin/ruby \
     PYTHON_CONFIG_DIR=/usr/lib/python2.7/config \
     PYTHON3_CONFIG_DIR=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu
@@ -93,6 +93,15 @@ RUN \
     --depends lua \
     --depends luajit \
     --depends ncurses \
+    --depends php7 \
+    --depends php7-common \
+    --depends php7-tokenizer \
+    --depends php7-phar \
+    --depends php7-mbstring \
+    --depends php7-json \
+    --depends php7-fileinfo \
+    --depends php7-simplexml \
+    --depends php7-xmlwriter \
     --depends perl \
     --depends python \
     --depends python3 \
@@ -129,6 +138,22 @@ RUN \
   pip3 install vim-vint proselint gitlint && \
   # ruby based
   gem install --no-ri --no-rdoc sqlint && \
+  # php based
+  echo "Downloading phpcs..." && \
+  curl -SL --progress-bar \
+    https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+    --output /usr/local/bin/phpcs && \
+  chmod a+x /usr/local/bin/phpcs && \
+  echo "Downloading phpcbf..." && \
+  curl -SL --progress-bar \
+    https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
+    --output /usr/local/bin/phpcbf && \
+  chmod a+x /usr/local/bin/phpcbf && \
+  echo "Downloading php-cs-fixer..." && \
+  curl -SL --progress-bar \
+    http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar \
+    --output /usr/local/bin/php-cs-fixer && \
+  chmod a+x /usr/local/bin/php-cs-fixer && \
   # kotlin
   echo "Downloading ktlint..." && \
   curl -SL --progress-bar \
