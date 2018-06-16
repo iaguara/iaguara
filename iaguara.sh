@@ -4,6 +4,9 @@ rootPath=$(cd -P -- "$(dirname -- "${0}")" && printf '%s\n' "$(pwd -P)")
 
 export IAGUARA_HOME=${IAGUARA_HOME:-$rootPath}
 export IAGUARA_RC="${IAGUARA_HOME}/iaguara.sh"
+export IAGUARA_BIN="${IAGUARA_HOME}/bin"
+
+export PATH="${IAGUARA_BIN}:${PATH}"
 
 projectsPath="${IAGUARA_HOME}/projects"
 

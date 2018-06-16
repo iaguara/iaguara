@@ -42,7 +42,17 @@ dotfiles:
 			-v /root \
 			iaguara/dotfiles
 
-run: data dotfiles network
+dns: network
+	- docker run -d --rm --privileged \
+			--name dns.iaguara \
+			--network iaguara \
+			-p 172.66.1.1:53:53/tcp \
+			-p 172.66.1.1:53:53/udp \
+			--cap-add=NET_ADMIN \
+			andyshinn/dnsmasq:2.78 \
+			--cache-size=0
+
+run: data dotfiles dns
 	docker run -it --rm --privileged \
 		--name $(containerName) \
 		--network iaguara \

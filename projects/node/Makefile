@@ -1,11 +1,13 @@
 NODE_VERSION ?= 8
 project = node
 date = $(shell date +%s)
-containerName = $(project)-$(date).iaguara
 imageName = iaguara/$(project)$(NODE_VERSION)
+defaultContainerName = $(project)-$(date)
+
+CONTAINER_NAME ?= $(defaultContainerName)
 
 stop:
-	- docker container stop $(containerName)
+	- docker container stop $(CONTAINER_NAME).iaguara
 
 remove: stop
 	- docker image rm -f $(imageName)
@@ -20,8 +22,8 @@ volume:
 run: volume
 	docker run -it --rm \
 		--network iaguara \
-		--name $(containerName) \
-		-h $(containerName) \
+		--name $(CONTAINER_NAME).iaguara \
+		-h $(CONTAINER_NAME).iaguara \
 		-v /tmp:/tmp \
 		-v ${HOST_HOME}/.ssh:/root/.ssh \
 		-v $(project)$(NODE_VERSION)-lib:/usr/local/lib/node_modules \
