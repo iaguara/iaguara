@@ -74,7 +74,7 @@ Now, inside **Îagûara** `base` container, you can run another image:
 RUN_COMMAND="vim <options> <files>" iaguara vim run
 ```
 
-*Some projects have a file in the `bin` folder for easy access from anywhere.:*
+*Some projects have a file in the `bin` folder for easy access from anywhere:*
 
 ```shell
 vim <options> <files>
@@ -83,7 +83,7 @@ vim <options> <files>
 We recommend you browse through the files in this project to see how
 things happen.
 
-See [Îagûara Oka](https://github.com/iaguara/oka) to view a pré-configured
+See [Îagûara Oka](https://github.com/iaguara/oka) to view a preconfigured
 `dotfiles` used by default in this project.
 
 
