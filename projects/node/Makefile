@@ -31,5 +31,6 @@ run: volume
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \
 		-w ${PWD} \
+		$(CONTAINER_ARGS) \
 		$(imageName) \
 		$(RUN_COMMAND)
