@@ -135,7 +135,7 @@ RUN \
   # js based
   npm install -g eslint prettier prettier-standard stylelint alex sonarjs && \
   # python based
-  pip3 install vim-vint proselint gitlint && \
+  pip3 install "Click==6.6" "pycodestyle<2.4.0,>=2.0.0" flake8 autopep8 vim-vint proselint gitlint && \
   # ruby based
   gem install --no-ri --no-rdoc sqlint && \
   # php based
