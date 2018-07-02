@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+cmdDir=/iaguara/projects/python
+
+pythonVersion="${1}"
+
+# remove first argument
+[ $# -ne 0 ] && shift
+
+PYTHON_VERSION="${pythonVersion}" RUN_COMMAND="${@}" make -C ${cmdDir} run
