@@ -4,6 +4,7 @@ imageName = iaguara/$(project)
 
 stop:
 	- docker container stop $(containerName)
+	- docker container stop dns.iaguara
 
 remove: stop
 	- docker image rm -f $(imageName)
