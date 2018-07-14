@@ -5,21 +5,20 @@ rootPath=$(cd -P -- "$(dirname -- "${0}")" && printf '%s\n' "$(pwd -P)")
 export IAGUARA_HOME=${IAGUARA_HOME:-$rootPath}
 export IAGUARA_RC="${IAGUARA_HOME}/iaguara.sh"
 export IAGUARA_BIN="${IAGUARA_HOME}/bin"
+export IAGUARA_APPS="${IAGUARA_HOME}/apps"
 
 export PATH="${IAGUARA_BIN}:${PATH}"
 
-projectsPath="${IAGUARA_HOME}/projects"
-
 iaguara() {
-  local projectDir="${projectsPath}/${1}"
+  local appDir="${IAGUARA_APPS}/${1}"
 
-  if [ -d "${projectDir}" ]
+  if [ -d "${appDir}" ]
   then
     # remove first argument
     [ $# -ne 0 ] && shift
   else
-    projectDir="${projectsPath}/base"
+    appDir="${IAGUARA_APPS}/base"
   fi
 
-  env make -C ${projectDir} "${@}"
+  env make -C ${appDir} "${@}"
 }

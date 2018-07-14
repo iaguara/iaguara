@@ -1,4 +1,4 @@
-FROM docker:stable
+FROM docker:18.03
 MAINTAINER Fiuza <fiuzagr@gmail.com>
 LABEL description="Iaguara base"
 ENTRYPOINT ["/bin/entrypoint"]

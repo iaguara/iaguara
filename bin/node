@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-cmdDir=/iaguara/projects/node
+cmdDir=${IAGUARA_APPS}/node
 
 nodeVersion="${1}"
 

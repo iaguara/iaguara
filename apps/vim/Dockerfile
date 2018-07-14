@@ -1,4 +1,4 @@
-FROM alpine:latest AS builder
+FROM alpine:3.7 AS builder
 
 ENV COMPILED_BY="fiuzagr" \
     BUILD_DIR=/tmp/vim \
@@ -40,7 +40,7 @@ RUN \
     --quiet \
     --depth=1 \
     --single-branch \
-    -b master \
+    --branch v8.1.0175 \
     https://github.com/vim/vim ${BUILD_DIR} && \
   cd ${BUILD_DIR} && \
   VIM_VERSION=$(git describe --abbrev=0 --tags) && \
@@ -113,7 +113,7 @@ RUN \
     . && \
   mv *.apk /
 
-FROM alpine:latest
+FROM alpine:3.7
 MAINTAINER Fiuza <fiuzagr@gmail.com>
 LABEL description="Latest Vim from source (+python +python3 +ruby +lua +perl) with vim-plug on Alpine Linux"
 

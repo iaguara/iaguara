@@ -3,8 +3,8 @@ containerName = $(project).iaguara
 imageName = iaguara/$(project)
 
 stop:
-	- docker container stop $(containerName)
 	- docker container stop dns.iaguara
+	- docker container stop $(containerName)
 
 remove: stop
 	- docker image rm -f $(imageName)
@@ -29,6 +29,7 @@ network:
 	- docker network create \
 			--driver bridge \
 			--subnet 172.66.1.0/24 \
+			--gateway 172.66.1.1 \
 			iaguara
 
 data:
@@ -44,19 +45,22 @@ dotfiles:
 			iaguara/dotfiles
 
 dns: network
-	- docker run -d --rm --privileged \
+	- docker run -d --rm \
 			--name dns.iaguara \
 			--network iaguara \
+			--ip 172.66.1.2 \
 			-p 172.66.1.1:53:53/tcp \
 			-p 172.66.1.1:53:53/udp \
 			--cap-add=NET_ADMIN \
 			andyshinn/dnsmasq:2.78 \
-			--cache-size=0 --server=8.8.8.8 --server=8.8.4.4
+			--cache-size=0 --server=8.8.8.8 --server=8.8.4.4 \
+			--neg-ttl=0 --max-ttl=0
 
 run: data dotfiles dns
 	docker run -it --rm --privileged \
 		--name $(containerName) \
 		--network iaguara \
+		--ip 172.66.1.3 \
 		-h iaguara \
 		-p 2200:22 \
 		-v /var/run/docker.sock:/var/run/docker.sock \

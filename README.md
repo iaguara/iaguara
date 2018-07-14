@@ -18,6 +18,11 @@ your own license. Any code used to compose this study will be informed with its
 own license, whenever necessary.
 
 
+## Schema
+
+![Îagûara Schema](https://docs.google.com/drawings/d/e/2PACX-1vRNZPYGNj4Xq4ZR29r9KhW2LChAEzkMK0cVSlKM9Yxj68rCv8sT4AYDCklG25wA-hCiIRQooAuICVCL/pub?w=1440&h=1080)
+
+
 ## Dependencies
 
 - [Make](https://www.gnu.org/software/make/manual/html_node/index.html)
@@ -41,7 +46,7 @@ to your shell.
 
 ## First use
 
-Build your own **Îagûara** images (`iaguara <project> build`):
+Build your own **Îagûara** images (`iaguara <app> build`):
 
 ```shell
 iaguara dotfiles build
@@ -53,8 +58,8 @@ iaguara vim build
 NODE_VERSION=8 iaguara node build
 ```
 
-*Some projects do not have a build task. Access the `Makefile` file of a
-project to verify your tasks.*
+*Some apps do not have a build task. Access the `Makefile` file of an
+app to verify your tasks.*
 
 Run the `base` image:
 
@@ -62,11 +67,11 @@ Run the `base` image:
 iaguara run
 ```
 
-*The `base` project may be hidden when running the `iaguara <task>` command.*
+*The `base` app may be hidden when running the `iaguara <task>` command.*
 
 Next to the `base` container are created the containers: `data`, `dotfiles` and
 `dns`; and the network bridge named `iaguara`.
-See [base Makefile](projects/base/Makefile).
+See [base Makefile](apps/base/Makefile).
 
 Now, inside **Îagûara** `base` container, you can run another image:
 
@@ -74,7 +79,7 @@ Now, inside **Îagûara** `base` container, you can run another image:
 RUN_COMMAND="vim <options> <files>" iaguara vim run
 ```
 
-*Some projects have a file in the `bin` folder for easy access from anywhere:*
+*Some apps have a file in the `bin` folder for easy access from anywhere:*
 
 ```shell
 vim <options> <files>
@@ -92,19 +97,19 @@ See [Îagûara Oka](https://github.com/iaguara/oka) to view a preconfigured
 ### Command structure
 
 ```shell
-<ENV_ARGS> iaguara <project:-base> <task>
+<ENV_ARGS> iaguara <app:-base> <task>
 ```
 
 ### Run commands inside images
 
 ```shell
-RUN_COMMAND="ls -l" iaguara <project:-base> run
+RUN_COMMAND="ls -l" iaguara <app:-base> run
 ```
 
 ### Run named containers
 
 ```shell
-CONTAINER_NAME="my-container" iaguara <project:-base> run
+CONTAINER_NAME="my-container" iaguara <app:-base> run
 ```
 
 *All containers receives a suffix `.iaguara`.*

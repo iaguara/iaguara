@@ -1,9 +1,9 @@
 # Îagûara
 
-## The project structure
+## The app structure
 
 ```
-  project-name/
+  app-name/
             |- rootfs/
             |- Dockerfile
             |- Makefile
@@ -15,4 +15,4 @@ file system (the path `/` inside image).
 The `Dockerfile` is optional, used only when we want to generate
 a new Docker image (the `Makefile` must have a `build` task).
 
-The `Makefile` contains tasks to build and run the project.
+The `Makefile` contains tasks to build and run the app.
