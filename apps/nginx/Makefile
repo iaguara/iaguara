@@ -1,7 +1,7 @@
 project = nginx
 containerName = $(project).iaguara
 imageName = $(project)
-rootfs = ${HOST_IAGUARA_HOME}/projects/$(project)/rootfs
+rootfs = ${HOST_IA_HOME}/projects/$(project)/rootfs
 
 stop:
 	- docker container stop $(containerName)

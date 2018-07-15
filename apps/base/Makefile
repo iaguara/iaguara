@@ -35,7 +35,7 @@ network:
 data:
 	- docker create \
 			--name data.iaguara \
-			-v ${HOME}/workspace:/data \
+			-v ${IA_WORKSPACE:-"${HOME}/workspace"}:/data \
 			tianon/true
 
 dotfiles:
@@ -66,9 +66,9 @@ run: data dotfiles dns
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v /tmp:/tmp \
 		-v ${HOME}/.ssh:/root/.ssh \
-		-v ${IAGUARA_HOME}:/iaguara \
+		-v ${IA_HOME}:/iaguara \
 		-e HOST_HOME="${HOME}" \
-		-e HOST_IAGUARA_HOME="${IAGUARA_HOME}" \
+		-e HOST_IA_HOME="${IA_HOME}" \
 		-e COLUMNS=`tput cols` -e LINES=`tput lines` \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \

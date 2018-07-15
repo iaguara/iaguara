@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-cmdDir=${IAGUARA_APPS}/wp-cli
+cmdDir=${IA_APPS}/wp-cli
 
 RUN_COMMAND="php -d memory_limit=512M /usr/local/bin/wp --allow-root ${@}" make -C ${cmdDir} run

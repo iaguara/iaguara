@@ -34,14 +34,18 @@ own license, whenever necessary.
 Clone this repository and insert the code below into your `.bashrc` or `.zshrc`:
 
 ```shell
-export IAGUARA_HOME="$HOME/.iaguara"
-[ -s "$IAGUARA_HOME/iaguara.sh" ] && \. $IAGUARA_HOME/iaguara.sh
+export IA_HOME="$HOME/.iaguara"
+export IA_WORKSPACE="$HOME/workspace"
+[ -s "$IA_HOME/iaguara.sh" ] && \. $IA_HOME/iaguara.sh
 ```
 
-*Changes `IAGUARA_HOME` to the path chosen when cloning this repository.*
+*Changes `IA_HOME` to the path chosen when cloning this repository.*
 
 The `bin` folder is added in your `$PATH` variable exposing some commands
 to your shell.
+
+*Ensure that `docker` is managed as a
+[non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)*
 
 
 ## First use

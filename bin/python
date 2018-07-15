@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-cmdDir=${IAGUARA_APPS}/python
+cmdDir=${IA_APPS}/python
 
 pythonVersion="${1}"
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-cmdDir=${IAGUARA_APPS}/composer
+cmdDir=${IA_APPS}/composer
 
 RUN_COMMAND="composer ${@}" make -C ${cmdDir} run
