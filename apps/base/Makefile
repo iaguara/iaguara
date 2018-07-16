@@ -53,8 +53,9 @@ dns: network
 			-p 172.66.1.1:53:53/udp \
 			--cap-add=NET_ADMIN \
 			andyshinn/dnsmasq:2.78 \
-			--cache-size=0 --server=8.8.8.8 --server=8.8.4.4 \
-			--neg-ttl=0 --max-ttl=0
+			--cache-size=0 --no-negcache \
+			--neg-ttl=0 --max-ttl=0 \
+			--server=8.8.8.8 --server=8.8.4.4
 
 run: data dotfiles dns
 	docker run -it --rm --privileged \
