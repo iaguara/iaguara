@@ -29,7 +29,7 @@ network:
 	- docker network create \
 			--driver bridge \
 			--subnet 172.66.1.0/24 \
-			--gateway 172.66.1.1 \
+			--gateway 172.66.1.254 \
 			iaguara
 
 data:
@@ -48,9 +48,7 @@ dns: network
 	- docker run -d --rm \
 			--name dns.iaguara \
 			--network iaguara \
-			--ip 172.66.1.2 \
-			-p 172.66.1.1:53:53/tcp \
-			-p 172.66.1.1:53:53/udp \
+			--ip 172.66.1.1 \
 			--cap-add=NET_ADMIN \
 			andyshinn/dnsmasq:2.78 \
 			--cache-size=0 --no-negcache \
@@ -61,7 +59,7 @@ run: data dotfiles dns
 	docker run -it --rm --privileged \
 		--name $(containerName) \
 		--network iaguara \
-		--ip 172.66.1.3 \
+		--ip 172.66.1.2 \
 		-h iaguara \
 		-p 2200:22 \
 		-v /var/run/docker.sock:/var/run/docker.sock \
