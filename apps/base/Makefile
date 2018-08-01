@@ -1,6 +1,7 @@
 project = base
 containerName = $(project).iaguara
 imageName = iaguara/$(project)
+IA_WORKSPACE ?= $(HOME)/workspace
 
 stop:
 	- docker container stop dns.iaguara
@@ -35,7 +36,7 @@ network:
 data:
 	- docker create \
 			--name data.iaguara \
-			-v ${IA_WORKSPACE:-"${HOME}/workspace"}:/data \
+			-v $(IA_WORKSPACE):/data \
 			tianon/true
 
 dotfiles:
@@ -64,10 +65,10 @@ run: data dotfiles dns
 		-p 2200:22 \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v /tmp:/tmp \
-		-v ${HOME}/.ssh:/root/.ssh \
-		-v ${IA_HOME}:/iaguara \
-		-e HOST_HOME="${HOME}" \
-		-e HOST_IA_HOME="${IA_HOME}" \
+		-v $(HOME)/.ssh:/root/.ssh \
+		-v $(IA_HOME):/iaguara \
+		-e HOST_HOME="$(HOME)" \
+		-e HOST_IA_HOME="$(IA_HOME)" \
 		-e COLUMNS=`tput cols` -e LINES=`tput lines` \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \
