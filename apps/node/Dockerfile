@@ -5,6 +5,10 @@ MAINTAINER Fiuza <fiuzagr@gmail.com>
 LABEL description="Iaguara Node.js"
 
 RUN \
+# remove old yarn
+  rm -rf /usr/local/bin/yarn && \
+  rm -rf /usr/local/bin/yarnpkg && \
+  rm -rf /opt/yarn* && \
   apk add --no-cache \
     autoconf \
     automake \
@@ -16,7 +20,9 @@ RUN \
     nasm \
     openssh-client \
     python && \
-  npm install -g npx@latest
+  npm install -g npm@latest && \
+  npm install -g npx@latest && \
+  npm install -g yarn@latest
 
 WORKDIR /data
 CMD ["node"]
