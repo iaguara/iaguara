@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+cmdDir=${IA_APPS}/pandoc
+
+RUN_COMMAND="pandoc ${@}" make -C ${cmdDir} run
