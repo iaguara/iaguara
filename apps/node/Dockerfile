@@ -20,7 +20,7 @@ RUN \
     nasm \
     openssh-client \
     python && \
-  npm install -g npm@latest && \
+  npm cache clean --force && \
   npm install -g npx@latest && \
   npm install -g yarn@latest
 
