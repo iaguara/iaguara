@@ -69,6 +69,8 @@ run: data dotfiles dns
 		-v $(IA_HOME):/iaguara \
 		-e HOST_HOME="$(HOME)" \
 		-e HOST_IA_HOME="$(IA_HOME)" \
+		-e HOST_USER_ID="$(shell id -u)" \
+		-e HOST_GROUP_ID="$(shell id -g)" \
 		-e COLUMNS=`tput cols` -e LINES=`tput lines` \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \

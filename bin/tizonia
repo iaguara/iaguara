@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+cmdDir=${IA_APPS}/tizonia
+
+RUN_COMMAND="tizonia ${@}" make -C ${cmdDir} run
