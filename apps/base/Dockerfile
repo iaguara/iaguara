@@ -25,6 +25,7 @@ RUN \
     htop \
     jq \
     make \
+    ncurses \
     openssh \
     tmux \
     wget \

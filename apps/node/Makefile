@@ -1,8 +1,9 @@
-NODE_VERSION ?= 8
+NODE_VERSION ?= 10
 project = node
 date = $(shell date +%s)
 imageName = iaguara/$(project)$(NODE_VERSION)
 defaultContainerName = $(project)-$(date)
+volumeName = $(project)$(NODE_VERSION)-data
 
 CONTAINER_NAME ?= $(defaultContainerName)
 
@@ -16,8 +17,7 @@ build: remove
 	docker build --build-arg NODE_VERSION=$(NODE_VERSION) -t $(imageName) .
 
 volume:
-	- docker volume create $(project)$(NODE_VERSION)-lib
-	- docker volume create $(project)$(NODE_VERSION)-bin
+	- docker volume create $(volumeName)
 
 run: volume
 	docker run -it --rm \
@@ -26,8 +26,7 @@ run: volume
 		-h $(CONTAINER_NAME).iaguara \
 		-v /tmp:/tmp \
 		-v ${HOST_HOME}/.ssh:/root/.ssh \
-		-v $(project)$(NODE_VERSION)-lib:/usr/local/lib/node_modules \
-		-v $(project)$(NODE_VERSION)-bin:/usr/local/bin \
+		-v $(volumeName):/usr/local \
 		--volumes-from data.iaguara \
 		--volumes-from dotfiles.iaguara \
 		-w ${PWD} \
