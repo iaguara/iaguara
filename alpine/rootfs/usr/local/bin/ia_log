@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+set -eu
+
+message=$1
+
+# remove first argument
+[ $# -ne 0 ] && shift
+
+printf "\033[1;38;5;220mIaguara>\033[0m "
+printf "\033[1m${message}\033[0m "
+echo "${@}"

@@ -1,0 +1,17 @@
+Protocol 2
+Port 22
+PubkeyAuthentication yes
+PasswordAuthentication no
+AllowTcpForwarding no
+X11Forwarding no
+AllowUsers iaguara
+PrintMotd no
+IgnoreUserKnownHosts yes
+PermitRootLogin no
+PermitEmptyPasswords no
+PermitUserEnvironment yes
+AcceptEnv LANG LANGUAGE LC_ALL
+
+Match Address 172.66.1.*
+  PasswordAuthentication yes
+  PermitEmptyPasswords yes

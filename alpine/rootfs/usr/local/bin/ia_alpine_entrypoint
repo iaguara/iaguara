@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+UID=${IA_UID:-1000}
+GID=${IA_GID:-$UID}
+DGID=$IA_DOCKER_GID
+
+# add user and group with UID:GID
+addgroup -g $GID -S iaguara
+adduser -u $UID -S iaguara -G iaguara -h /oka
+chown -R iaguara:iaguara /oka
+
+# add user to the docker group
+if [ "x$DGID" != "x" ]; then
+  DGID_EXISTS=$(cat /etc/group | grep $DGID | wc -l)
+  if [ $DGID_EXISTS == "0" ]; then
+    addgroup -g $DGID -S docker
+    adduser iaguara docker
+  else
+    DG=$(getent group $DGID | cut -d: -f1)
+    adduser iaguara $DG
+  fi
+fi
+
+# execute commands with new user
+exec su-exec iaguara "$@"

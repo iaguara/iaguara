@@ -10,6 +10,18 @@
 !bin/**/*
 !bin/**/.*
 
-!apps/
-!apps/**/*
-!apps/**/.*
+!alpine/
+!alpine/**/*
+!alpine/**/.*
+
+!base/
+!base/**/*
+!base/**/.*
+
+!docker/
+!docker/**/*
+!docker/**/.*
+
+!git/
+!git/**/*
+!git/**/.*

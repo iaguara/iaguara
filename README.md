@@ -35,7 +35,7 @@ Clone this repository and insert the code below into your `.bashrc` or `.zshrc`:
 
 ```shell
 export IA_HOME="$HOME/.iaguara"
-export IA_WORKSPACE="$HOME/workspace"
+export IA_DATA="$HOME/workspace"
 [ -s "$IA_HOME/iaguara.sh" ] && \. $IA_HOME/iaguara.sh
 ```
 
@@ -50,13 +50,15 @@ to your shell.
 
 ## First use
 
-Build your own **Îagûara** images (`iaguara <app> build`):
+Run the bootstrap command:
 
 ```shell
-iaguara dotfiles build
+iaguara bootstrap
+```
 
-iaguara base build
+Then, build your own **Îagûara** images (`iaguara <app> build`):
 
+```shell
 iaguara vim build
 
 NODE_VERSION=8 iaguara node build
@@ -73,9 +75,9 @@ iaguara run
 
 *The `base` app may be hidden when running the `iaguara <task>` command.*
 
-Next to the `base` container are created the containers: `data`, `dotfiles` and
-`dns`; and the network bridge named `iaguara`.
-See [base Makefile](apps/base/Makefile).
+Next to the `base` container are created the containers: `data-vol`,
+`home-vol`, `tmp-vol` and `dns`; and the network bridge named `iaguara`. See
+[base Makefile](apps/base/Makefile).
 
 Now, inside **Îagûara** `base` container, you can run another image:
 
@@ -91,9 +93,6 @@ vim <options> <files>
 
 We recommend you browse through the files in this project to see how
 things happen.
-
-See [Îagûara Oka](https://github.com/iaguara/oka) to view a preconfigured
-`dotfiles` used by default in this project.
 
 
 ## Cheat Sheet

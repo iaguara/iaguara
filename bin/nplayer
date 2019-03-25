@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-cmdDir=${IA_APPS}/mopidy
-
-RUN_COMMAND="ncmpcpp ${@}" make -C ${cmdDir} run

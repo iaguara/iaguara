@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-cmdDir=${IA_APPS}/vim
-
-RUN_COMMAND="vim ${@}" make -C ${cmdDir} run
