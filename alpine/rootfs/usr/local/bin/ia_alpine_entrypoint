@@ -7,7 +7,6 @@ DGID=$IA_DOCKER_GID
 # add user and group with UID:GID
 addgroup -g $GID -S iaguara
 adduser -u $UID -S iaguara -G iaguara -h /oka
-chown -R iaguara:iaguara /oka
 
 # add user to the docker group
 if [ "x$DGID" != "x" ]; then
