@@ -49,6 +49,12 @@ dns: network
 		--neg-ttl=0 --max-ttl=0 \
 		--server=8.8.8.8 --server=8.8.4.4
 
+appsVol:
+	- docker create \
+		--name apps-vol.iaguara \
+		-v $(IA_APPS):/apps \
+		tianon/true
+
 dataVol:
 	- docker create \
 		--name data-vol.iaguara \
@@ -61,13 +67,19 @@ homeVol:
 		-v $(HOST_HOME):/oka \
 		tianon/true
 
+iaguaraVol:
+	- docker create \
+		--name iaguara-vol.iaguara \
+		-v $(IA_HOME):/iaguara \
+		tianon/true
+
 tmpVol:
 	- docker create \
 		--name tmp-vol.iaguara \
 		-v /tmp:/tmp \
 		tianon/true
 
-allVol: dataVol homeVol tmpVol
+allVol: appsVol dataVol homeVol iaguaraVol tmpVol
 
 run: allVol dns
 	docker run -it --rm --privileged \
@@ -77,13 +89,16 @@ run: allVol dns
 		-h iaguara \
 		-p 2200:22 \
 		-v /var/run/docker.sock:/var/run/docker.sock \
+		--volumes-from apps-vol.iaguara \
 		--volumes-from data-vol.iaguara \
 		--volumes-from home-vol.iaguara \
+		--volumes-from iaguara-vol.iaguara \
 		--volumes-from tmp-vol.iaguara \
 		-e HOST_HOME \
 		-e IA_UID \
 		-e IA_GID \
 		-e IA_DOCKER_GID \
+		-e IA_DATA \
 		-e COLUMNS \
 		-e LINES \
 		$(imageName) \

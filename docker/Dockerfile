@@ -9,8 +9,9 @@ RUN \
     apk add --no-cache --virtual build-deps \
       curl \
       python3; \
+    pip3 install --quiet --upgrade pip; \
   ia_log "Docker>" "Installing docker-compose"; \
-    pip3 install --quiet docker-compose; \
+    pip3 install --quiet docker-compose~=1.23.0; \
   ia_log "Docker>" "Installing docker-machine"; \
     machineUrl="https://github.com/docker/machine/releases/download"; \
     machinePackage="docker-machine-$(uname -s)-$(uname -m)"; \
