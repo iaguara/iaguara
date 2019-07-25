@@ -45,7 +45,13 @@ The `bin` folder is added in your `$PATH` variable exposing some commands
 to your shell.
 
 *Ensure that `docker` is managed as a
-[non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)*
+[non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
+and start the docker daemon:*
+
+```shell
+sudo systemctl enable docker
+sudo systemctl start docker
+```
 
 
 ## First use
